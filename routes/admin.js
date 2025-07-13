@@ -6,11 +6,13 @@ const User = require('../models/User');
 const Event = require('../models/Event');
 const Booking = require('../models/Booking');
 
+// Middleware to restrict access to admins
 function isAdmin(req, res, next) {
   if (req.session.role !== 'admin') return res.status(403).send('Access denied');
   next();
 }
 
+// --- Dashboard GET ---
 router.get('/dashboard', isAdmin, async (req, res) => {
   try {
     const users = await User.find().lean();
@@ -59,9 +61,7 @@ router.get('/dashboard', isAdmin, async (req, res) => {
   }
 });
 
-module.exports = router;
-
-
+// --- POST: Approve Event ---
 router.post('/events/:id/approve', isAdmin, async (req, res) => {
   try {
     await Event.findByIdAndUpdate(req.params.id, { status: 'approved' });
@@ -72,6 +72,7 @@ router.post('/events/:id/approve', isAdmin, async (req, res) => {
   }
 });
 
+// --- POST: Reject Event ---
 router.post('/events/:id/reject', isAdmin, async (req, res) => {
   try {
     await Event.findByIdAndUpdate(req.params.id, { status: 'rejected' });
@@ -82,6 +83,7 @@ router.post('/events/:id/reject', isAdmin, async (req, res) => {
   }
 });
 
+// --- POST: Delete Event ---
 router.post('/events/:id/delete', isAdmin, async (req, res) => {
   try {
     await Event.findByIdAndDelete(req.params.id);
@@ -91,3 +93,5 @@ router.post('/events/:id/delete', isAdmin, async (req, res) => {
     res.status(500).send('Failed to delete event.');
   }
 });
+
+module.exports = router;

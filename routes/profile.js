@@ -76,7 +76,7 @@ router.post('/profile/edit', isAuthenticated, async (req, res) => {
 });
 
 router.get('/profile/password', isAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/change-password.html'));
+  res.sendFile(path.join(__dirname, '../views/reset-password.html'));
 });
 
 router.post('/profile/password', isAuthenticated, async (req, res) => {
