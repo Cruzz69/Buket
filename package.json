@@ -1,0 +1,24 @@
+{
+  "name": "universal-ticket-system",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^17.2.0",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.17.0",
+    "mongoose": "^7.8.7",
+    "nodemailer": "^6.9.3",
+    "pdfkit": "^0.13.0",
+    "qrcode": "^1.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

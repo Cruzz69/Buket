@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Just Buket - Events</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lemon&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #b32f4a;
+      --card-bg: #63d7a1cf;
+    }
+    body {
+      margin: 0;
+      font-family: 'DM Serif Display', serif;
+      background: url('/images/movie.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    h1 {
+      text-align: center;
+      font-family: 'Lemon', serif;
+      color: cyan;
+      padding: 2rem 1rem 1rem;
+      margin: 0;
+      box-shadow: rgba(243, 210, 210, 0.386) 6px 6px 16px;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1rem auto 2rem;
+    }
+    .nav-buttons button {
+      padding: 0.6rem 1.5rem;
+      font-weight: bold;
+      border: none;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-family: 'Lemon', serif;
+    }
+    .nav-buttons button:hover {
+      background: #8c2038;
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+    }
+    .event-card {
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+    .event-card:hover {
+      transform: scale(1.02);
+    }
+    .event-card h3 {
+      margin-top: 0;
+      font-family: 'Lemon', serif;
+      color: var(--accent);
+    }
+    .event-card p {
+      margin: 0.4rem 0;
+    }
+    .event-card button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .event-card button:hover {
+      background: #8c2038;
+    }
+    .event-section {
+      display: none;
+    }
+    .event-section.active {
+      display: grid;
+    }
+  </style>
+</head>
+<body>
+  <h1>Explore Events</h1>
+  <div class="nav-buttons">
+    <button onclick="showSection('movies', '/images/movie.jpg')">Movies</button>
+    <button onclick="showSection('trains', '/images/flight.jpg')">Trains</button>
+  </div>
+
+  <div class="events-grid">
+    <div id="movies" class="event-section active">
+      <div class="event-card">
+        <h3>Dune: Part II</h3>
+        <p>Date: 12th July</p>
+        <p>Time: 7:00 PM</p>
+        <p>Venue: PVR Cinemas</p>
+        <p>Price: ₹220</p>
+        <button onclick="bookEvent('1', 'Dune: Part II', 'movie', 220)">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>Inside&Out of U</h3>
+        <p>Date: 13th July</p>
+        <p>Time: 6:30 PM</p>
+        <p>Venue: Cinemax</p>
+        <p>Price: ₹180</p>
+        <button onclick="bookEvent('2', 'Inside&Out of U', 'movie', 180)">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>Spidereman all way Home</h3>
+        <p>Date: 14th July</p>
+        <p>Time: 9:15 PM</p>
+        <p>Venue: Sathyam Cinemas</p>
+        <p>Price: ₹250</p>
+        <button onclick="bookEvent('3', 'Spidereman all way Home', 'movie', 250)">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>DELTA_Journey</h3>
+        <p>Date: 15th July</p>
+        <p>Time: 5:30 PM</p>
+        <p>Venue: INOX</p>
+        <p>Price: ₹200</p>
+        <button onclick="bookEvent('4', 'DELTA_Journey', 'movie', 200)">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>When I Found Her (Explicit)</h3>
+        <p>Date: 25th August</p>
+        <p>Time: 8:00 PM</p>
+        <p>Venue: LA Cinemas</p>
+        <p>Price: ₹460</p>
+        <button onclick="bookEvent('5', 'When I Found Her', 'movie', 460)">Book Now</button>
+      </div>
+    </div>
+
+    <div id="trains" class="event-section">
+      <div class="event-card">
+        <h3>Hyperloop</h3>
+        <p>Date: 20th July</p>
+        <p>From: Delhi</p>
+        <p>To: Mumbai</p>
+        <p>Price: ₹1500</p>
+        <button onclick="bookEvent('6', 'Hyperloop', 'train', 1500, 'Delhi', 'Mumbai')">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>Jai Bharat</h3>
+        <p>Date: 21st July</p>
+        <p>From: Bangalore</p>
+        <p>To: Hyderabad</p>
+        <p>Price: ₹1300</p>
+        <button onclick="bookEvent('7', 'Jai Bharat', 'train', 1300, 'Bangalore', 'Hyderabad')">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>Spectrum Express</h3>
+        <p>Date: 22nd July</p>
+        <p>From: Mumbai</p>
+        <p>To: Pune</p>
+        <p>Price: ₹1100</p>
+        <button onclick="bookEvent('8', 'Spectrum Express', 'train', 1100, 'Mumbai', 'Pune')">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>Raju Express</h3>
+        <p>Date: 23rd July</p>
+        <p>From: Kolkata</p>
+        <p>To: New Delhi</p>
+        <p>Price: ₹1700</p>
+        <button onclick="bookEvent('9', 'Raju Express', 'train', 1700, 'Kolkata', 'New Delhi')">Book Now</button>
+      </div>
+      <div class="event-card">
+        <h3>Trichy Express</h3>
+        <p>Date: 24th July</p>
+        <p>From: Madurai</p>
+        <p>To: Chennai</p>
+        <p>Price: ₹800</p>
+        <button onclick="bookEvent('10', 'Trichy Express', 'train', 800, 'Madurai', 'Chennai')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(id, background) {
+      document.querySelectorAll('.event-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.body.style.backgroundImage = `url('${background}')`;
+    }
+
+    function bookEvent(eventId, title, category, price, source = '', destination = '') {
+      const query = new URLSearchParams({
+        eventId,
+        title,
+        category,
+        price,
+        source,
+        destination
+      }).toString();
+       window.location.href = `/bookings/form?${query}`;
+
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="../public/styles/main.css">
+  <style>
+    .profile-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .profile-header div {
+      flex: 1;
+    }
+    .profile-header h2 {
+      margin: 0 0 10px;
+      color: #4a90e2;
+    }
+    .booking-history {
+      margin-top: 40px;
+    }
+    .booking-card {
+      background: #f8f8f8;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 4px solid #4a90e2;
+      border-radius: 5px;
+    }
+    .booking-card p {
+      margin: 5px 0;
+    }
+    .cancel-btn {
+      background: #ff5e5e;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .edit-btn, .password-btn {
+      margin-top: 10px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <img src="/images/default-avatar.png" alt="Profile Picture">
+      <div>
+        <h2>{{username}}</h2>
+        <p>Email: {{email}}</p>
+        <p>Role: {{role}}</p>
+        <button class="edit-btn">Edit Profile</button>
+        <button class="password-btn">Change Password</button>
+      </div>
+    </div>
+
+    <div class="booking-history">
+      <h3>Your Bookings</h3>
+      {{#each bookings}}
+        <div class="booking-card">
+          <p><strong>Event:</strong> {{event.title}}</p>
+          <p><strong>Date:</strong> {{event.date}} {{event.time}}</p>
+          <p><strong>Venue:</strong> {{event.venue}}</p>
+          <p><strong>Quantity:</strong> {{quantity}}</p>
+          <p><strong>Total Paid:</strong> ₹{{totalPrice}}</p>
+          {{#if cancellable}}
+          <form method="POST" action="/bookings/{{_id}}/cancel">
+            <button type="submit" class="cancel-btn">Cancel Booking</button>
+          </form>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</body>
+</html>

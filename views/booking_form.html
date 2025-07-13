@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Booking Form - Buket</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lemon&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f3f4f6;
+      font-family: 'DM Serif Display', serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .booking-form {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      font-family: 'Lemon', serif;
+      color: #b32f4a;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 0.7em;
+      margin-top: 5px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'DM Serif Display', serif;
+    }
+    button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 0.8em;
+      background-color: #b32f4a;
+      color: white;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Lemon', serif;
+    }
+    button:hover {
+      background-color: #8c2038;
+    }
+    #total-display {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="booking-form">
+    <h2>Book Your Ticket</h2>
+    <form method="POST" action="/bookings/confirm">
+      <label>Event ID</label>
+      <input type="text" name="eventId" value="" readonly />
+
+      <label>Event Type</label>
+      <input type="text" name="category" value="" readonly />
+
+      <label>Event Name</label>
+      <input type="text" name="title" value="" readonly />
+
+      <label>Quantity</label>
+      <input type="number" name="quantity" min="1" max="10" required />
+
+      <div id="train-fields" style="display: none;">
+        <label>From</label>
+        <input type="text" name="source" />
+
+        <label>To</label>
+        <input type="text" name="destination" />
+      </div>
+
+      <label>Price per Ticket</label>
+      <input type="text" name="price" value="" readonly />
+
+      <div id="total-display"></div>
+      <button type="submit">Proceed to Summary</button>
+    </form>
+  </div>
+
+  <script src="../public/scripts/main.js"></script>
+</body>
+</html>

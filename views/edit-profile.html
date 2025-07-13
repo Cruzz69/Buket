@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="../public/styles/main.css">
+  <style>
+    .form-container {
+      background: white;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    }
+    h2 {
+      text-align: center;
+      color: #4a90e2;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 12px;
+      background-color: #4a90e2;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3a7acc;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Edit Profile</h2>
+    <form method="POST" action="/profile/edit">
+      <label for="username">Username:</label>
+      <input type="text" name="username" value="{{username}}" required>
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" value="{{email}}" required>
+
+      <button type="submit">Update Profile</button>
+    </form>
+  </div>
+</body>
+</html>

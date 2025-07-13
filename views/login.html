@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buket-login</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lemon&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #d4eaf3;
+      --cherry: #b32f4a;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'DM Serif Display', serif;
+      background: url('../images/firstview.jpg') center/cover no-repeat fixed;
+      backdrop-filter: blur(0px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: rgba(138, 198, 227, 0.98);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(232, 226, 227, 0.57);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-family: 'Lemon', serif;
+      color: var(--cherry);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: var(--cherry);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Lemon', serif;
+    }
+
+    button:hover {
+      background-color: #8c2038;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    a {
+      color: var(--cherry);
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>Login</h1>
+    <form  method="POST" action="/login">
+      <label>Email : </label>
+      <input type="email" name="email" required />
+      <label>Password : </label>
+      <input type="password" name="password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p id="errorMsg" style="color: rgb(255, 34, 34); margin-top: 10px;"></p>
+    <p> Don't have an account? <a href="/views/register.html">Register</a></p>
+  </div>
+  <script src="../public/scripts/main.js"></script>
+</body>
+</html>

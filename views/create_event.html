@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Event</title>
+  <link rel="stylesheet" href="../public/styles/main.css" />
+</head>
+<body>
+  <h2>Create New Event</h2>
+  <form method="POST" action="/events/new">
+    <label>Title:</label>
+    <input type="text" name="title" required />
+    <label>Category:</label>
+    <select name="category">
+      <option value="movie">Movie</option>
+      <option value="concert">Concert</option>
+      <option value="train">Train</option>
+    </select>
+    <label>Description:</label>
+    <textarea name="description"></textarea>
+    <label>Date:</label>
+    <input type="text" name="date" required />
+    <label>Time:</label>
+    <input type="text" name="time" required />
+    <label>Venue:</label>
+    <input type="text" name="venue" required />
+    <label>Source:</label>
+    <input type="text" name="source" />
+    <label>Destination:</label>
+    <input type="text" name="destination" />
+    <label>Price:</label>
+    <input type="number" name="price" required />
+    <label>Total Seats:</label>
+    <input type="number" name="totalSeats" required />
+    <button type="submit">Create Event</button>
+  </form>
+  <script src="/scripts/main.js"></script>
+</body>
+</html>

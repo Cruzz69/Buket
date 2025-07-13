@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Summary - Buket</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lemon&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    body {
+      background-color: #fff0f0;
+      font-family: 'DM Serif Display', serif;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .summary-box {
+      background: white;
+      max-width: 550px;
+      margin: auto;
+      padding: 2.5rem;
+      border-radius: 14px;
+      box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-family: 'Lemon', serif;
+      text-align: center;
+      color: #b32f4a;
+    }
+
+    .summary-details {
+      margin-top: 1.5rem;
+    }
+
+    .summary-details p {
+      margin: 0.6rem 0;
+      font-size: 1.05rem;
+    }
+
+    form {
+      margin-top: 2rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #b32f4a;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Lemon', serif;
+    }
+
+    button:hover {
+      background-color: #8c2038;
+    }
+  </style>
+</head>
+<body>
+  <div class="summary-box">
+    <h2>Confirm Your Booking</h2>
+    <div class="summary-details">
+      <p><strong>Event:</strong> {{title}}</p>
+      <p><strong>Type:</strong> {{category}}</p>
+      <p><strong>Quantity:</strong> {{quantity}}</p>
+      <p><strong>Price per ticket:</strong> ₹{{price}}</p>
+      <p><strong>Total Price:</strong> ₹{{total}}</p>
+      {{#if isTrain}}
+      <p><strong>From:</strong> {{source}}</p>
+      <p><strong>To:</strong> {{destination}}</p>
+      {{/if}}
+    </div>
+
+    <form method="POST" action="/bookings/complete">
+      <input type="hidden" name="eventId" value="{{eventId}}">
+      <input type="hidden" name="quantity" value="{{quantity}}">
+      <input type="hidden" name="price" value="{{price}}">
+      {{#if isTrain}}
+        <input type="hidden" name="source" value="{{source}}">
+        <input type="hidden" name="destination" value="{{destination}}">
+      {{/if}}
+      <button type="submit">Confirm & Pay</button>
+    </form>
+  </div>
+
+  <script src="../public/scripts/main.js"></script>
+</body>
+</html>
