@@ -2,65 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>User Profile</title>
-  <link rel="stylesheet" href="../public/styles/main.css">
+  <title>Just Buket – Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lemon&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --accent: #b32f4a;
+      --primary: #fff0ec;
+      --blue: #4a90e2;
+    }
+
+    body {
+      font-family: 'DM Serif Display', serif;
+      background: var(--primary);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
     .profile-container {
       max-width: 800px;
-      margin: 40px auto;
+      margin: auto;
       padding: 30px;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
     }
+
     .profile-header {
       display: flex;
       align-items: center;
       gap: 20px;
     }
+
     .profile-header img {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       object-fit: cover;
+      border: 2px solid var(--accent);
     }
+
     .profile-header div {
       flex: 1;
     }
+
     .profile-header h2 {
       margin: 0 0 10px;
-      color: #4a90e2;
+      font-family: 'Lemon', serif;
+      color: var(--accent);
     }
+
+    .profile-header p {
+      margin: 4px 0;
+      color: #444;
+    }
+
+    .edit-btn,
+    .password-btn {
+      margin-right: 10px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+
+    .edit-btn:hover,
+    .password-btn:hover {
+      background: #356bb5;
+    }
+
     .booking-history {
       margin-top: 40px;
     }
+
+    .booking-history h3 {
+      font-family: 'Lemon', serif;
+      color: var(--accent);
+    }
+
     .booking-card {
-      background: #f8f8f8;
-      padding: 15px;
+      background: #fdf9f7;
+      padding: 16px;
       margin-bottom: 15px;
-      border-left: 4px solid #4a90e2;
-      border-radius: 5px;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
+
     .booking-card p {
-      margin: 5px 0;
+      margin: 6px 0;
+      color: #333;
     }
+
     .cancel-btn {
       background: #ff5e5e;
       color: white;
       border: none;
-      padding: 0.5em 1em;
+      padding: 0.5em 1.2em;
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
-    }
-    .edit-btn, .password-btn {
       margin-top: 10px;
-      background: #4a90e2;
-      color: white;
-      border: none;
-      padding: 0.5em 1em;
-      border-radius: 5px;
-      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .cancel-btn:hover {
+      background: #d13b3b;
     }
   </style>
 </head>
@@ -72,8 +122,8 @@
         <h2>{{username}}</h2>
         <p>Email: {{email}}</p>
         <p>Role: {{role}}</p>
-        <button class="edit-btn">Edit Profile</button>
-        <button class="password-btn">Change Password</button>
+        <a href="/profile/edit"><button class="edit-btn">Edit Profile</button></a>
+        <a href="/change-password"><button class="password-btn">Change Password</button></a>
       </div>
     </div>
 

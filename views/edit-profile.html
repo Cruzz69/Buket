@@ -1,62 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Edit Profile</title>
-  <link rel="stylesheet" href="../public/styles/main.css">
+  <meta charset="UTF-8" />
+  <title>Edit Profile – Just Buket</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lemon&display=swap" rel="stylesheet">
   <style>
-    .form-container {
-      background: white;
-      max-width: 500px;
-      margin: 40px auto;
+    body {
+      background: #fff0ec;
+      font-family: 'DM Serif Display', serif;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
     }
+
+    .edit-container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
     h2 {
       text-align: center;
-      color: #4a90e2;
+      color: #b32f4a;
+      font-family: 'Lemon', serif;
     }
+
     label {
       display: block;
       margin-top: 20px;
-      font-weight: 600;
+      font-weight: bold;
     }
+
     input {
       width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 5px;
+      padding: 0.7em;
+      margin-top: 5px;
       border: 1px solid #ccc;
-      font-size: 1rem;
+      border-radius: 8px;
+      font-size: 1em;
     }
+
     button {
       margin-top: 30px;
       width: 100%;
-      padding: 12px;
-      background-color: #4a90e2;
+      padding: 0.8em;
+      background-color: #b32f4a;
       color: white;
+      font-size: 1em;
       font-weight: bold;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
     }
+
     button:hover {
-      background-color: #3a7acc;
+      background-color: #8c2038;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Edit Profile</h2>
-    <form method="POST" action="/profile/edit">
-      <label for="username">Username:</label>
-      <input type="text" name="username" value="{{username}}" required>
+  <div class="edit-container">
+    <h2>Edit Your Profile</h2>
+    <form method="POST" action="/profile/edit" enctype="multipart/form-data">
+      <label>Username</label>
+      <input type="text" name="username" value="{{username}}" required />
 
-      <label for="email">Email:</label>
-      <input type="email" name="email" value="{{email}}" required>
+      <label>Email</label>
+      <input type="email" name="email" value="{{email}}" required />
 
-      <button type="submit">Update Profile</button>
+      <label>Profile Picture</label>
+      <input type="file" name="avatar" accept="image/*" />
+
+      <button type="submit">Save Changes</button>
     </form>
   </div>
 </body>
