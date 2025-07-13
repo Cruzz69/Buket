@@ -1,40 +1,142 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Create Event</title>
-  <link rel="stylesheet" href="../public/styles/main.css" />
+  <meta charset="UTF-8" />
+  <title>Create Event – Just Buket</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lemon&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #b32f4a;
+      --background: #fff4f1;
+      --button: #4a90e2;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: 'DM Serif Display', serif;
+      background: url(../images/movie.jpg) no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--accent);
+      font-family: 'Lemon', serif;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8em;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      width: 100%;
+      background: var(--button);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #3578c0;
+    }
+
+    .train-fields {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h2>Create New Event</h2>
   <form method="POST" action="/events/new">
-    <label>Title:</label>
+    <label for="title">Title:</label>
     <input type="text" name="title" required />
-    <label>Category:</label>
-    <select name="category">
+
+    <label for="category">Category:</label>
+    <select name="category" id="category" required>
       <option value="movie">Movie</option>
       <option value="concert">Concert</option>
       <option value="train">Train</option>
     </select>
-    <label>Description:</label>
-    <textarea name="description"></textarea>
-    <label>Date:</label>
-    <input type="text" name="date" required />
-    <label>Time:</label>
-    <input type="text" name="time" required />
-    <label>Venue:</label>
-    <input type="text" name="venue" required />
-    <label>Source:</label>
-    <input type="text" name="source" />
-    <label>Destination:</label>
-    <input type="text" name="destination" />
-    <label>Price:</label>
+
+    <label for="description">Description:</label>
+    <textarea name="description" rows="3"></textarea>
+
+    <label for="date">Date:</label>
+    <input type="text" name="date" placeholder="e.g., 2025-08-12" required />
+
+    <label for="time">Time:</label>
+    <input type="text" name="time" placeholder="e.g., 18:00" required />
+
+    <label for="venue">Venue:</label>
+    <input type="text" name="venue" placeholder="e.g., City Hall / PVR Cinemas" required />
+
+    <div class="train-fields">
+      <label for="source">Source (Train only):</label>
+      <input type="text" name="source" placeholder="e.g., Chennai" />
+
+      <label for="destination">Destination (Train only):</label>
+      <input type="text" name="destination" placeholder="e.g., Delhi" />
+    </div>
+
+    <label for="price">Price (₹):</label>
     <input type="number" name="price" required />
-    <label>Total Seats:</label>
+
+    <label for="totalSeats">Total Seats:</label>
     <input type="number" name="totalSeats" required />
+
     <button type="submit">Create Event</button>
   </form>
-  <script src="/scripts/main.js"></script>
+
+  <script>
+    const categorySelect = document.getElementById('category');
+    const trainFields = document.querySelector('.train-fields');
+
+    categorySelect.addEventListener('change', () => {
+      if (categorySelect.value === 'train') {
+        trainFields.style.display = 'block';
+      } else {
+        trainFields.style.display = 'none';
+      }
+    });
+
+    // Show train fields if already selected on load
+    if (categorySelect.value === 'train') {
+      trainFields.style.display = 'block';
+    }
+  </script>
 </body>
 </html>
