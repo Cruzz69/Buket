@@ -1,6 +1,6 @@
-
+//Login
 document.addEventListener('DOMContentLoaded', () => {
-  // ======================== LOGIN ========================
+
   const loginForm = document.getElementById('loginForm');
 
   if (loginForm) {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const redirectPath = await res.text();
 
         if (res.ok) {
-          window.location.href = redirectPath; // e.g. /events
+          window.location.href = redirectPath;
         } else {
           alert(redirectPath || 'Incorrect credentials');
           loginForm.reset();
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ======================== REGISTER ========================
+  // register
   const registerForm = document.querySelector('form[action="/register"]');
   if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ======================== BOOKING FORM ========================
+  // booking formm
   const form = document.querySelector('.booking-form form');
   if (form) {
     const quantityInput = form.querySelector('input[name="quantity"]');
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const category = form.querySelector('input[name="category"]')?.value?.toLowerCase();
     const summaryButton = form.querySelector('button[type="submit"]');
 
-    // Real-time total price display
+    // real-time display
     const totalDisplay = document.createElement('div');
     totalDisplay.style.marginTop = '10px';
     totalDisplay.style.fontWeight = 'bold';
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     quantityInput.addEventListener('input', updateTotal);
-    updateTotal(); // Initialize on load
+    updateTotal(); // initial update
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ======================== DYNAMIC FILLING FOR BOOKING FORM ========================
+//filling automatically
   const params = new URLSearchParams(window.location.search);
   const fields = ['eventId', 'title', 'category', 'price', 'source', 'destination'];
   fields.forEach(field => {
