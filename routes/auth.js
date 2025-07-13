@@ -4,17 +4,17 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
-// GET: Login Page
+
 router.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/login.html'));
 });
 
-// GET: Register Page
+
 router.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '../views/register.html'));
 });
 
-// POST: Register
+///register
 router.post('/register', async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
@@ -25,7 +25,6 @@ router.post('/register', async (req, res) => {
     const newUser = new User({ username, email, password: hashed, role });
     await newUser.save();
 
-    // ✅ Just confirm registration success
     return res.status(200).send('/login');
   } catch (err) {
     console.error(err);
@@ -33,8 +32,8 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// POST: Login
-router.post('/login', async (req, res) => {
+// login
+router.post('/login', async (req, res) => {///login enables to use direclty /login in link(learnt from gpt its smart)
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -46,7 +45,7 @@ router.post('/login', async (req, res) => {
     req.session.userId = user._id;
     req.session.role = user.role;
 
-    // ✅ Tell client where to redirect
+    //redirect u
     if (user.role === 'admin') return res.status(200).send('/admin/dashboard');
     if (user.role === 'vendor') return res.status(200).send('/events/new');
     return res.status(200).send('/events');
@@ -56,7 +55,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// GET: Logout
+// GETout
 router.get('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('../views/login');

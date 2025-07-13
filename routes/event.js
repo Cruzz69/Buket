@@ -1,22 +1,27 @@
-// --- routes/event.js ---
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/Event');
-const { isAuthenticated, isVendor } = require('../middleware/authMiddleware');
+const { isVendor } = require('../middleware/authMiddleware');
 const path = require('path');
+const fs = require('fs');
 
-router.get('/', isAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/events.html'));
-});
-
+// fr u vendor ;)
 router.get('/new', isVendor, (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/create_event.html'));
+  const html = fs.readFileSync(path.join(__dirname, '../views/create_event.html'), 'utf8');
+  res.send(html);
 });
 
+// newww
 router.post('/new', isVendor, async (req, res) => {
-  const { title, category, description, date, time, venue, source, destination, price, totalSeats } = req.body;
   try {
-    const event = new Event({
+    const {
+      title, category, description,
+      date, time, venue,
+      source, destination,
+      price, totalSeats
+    } = req.body;
+
+    const newEvent = new Event({
       title,
       category,
       description,
@@ -25,15 +30,18 @@ router.post('/new', isVendor, async (req, res) => {
       venue,
       source: category === 'train' ? source : '',
       destination: category === 'train' ? destination : '',
-      price,
-      totalSeats,
-      availableSeats: totalSeats,
-      vendor: req.session.userId
+      price: parseInt(price),
+      totalSeats: parseInt(totalSeats),
+      availableSeats: parseInt(totalSeats),
+      vendor: req.session.userId,
+      status: 'pending' // consent is necessar (ig)
     });
-    await event.save();
-    res.redirect('/events');
+
+    await newEvent.save();
+    res.send(`<h2 style="font-family:DM Serif Display;color:#4a90e2;text-align:center;">✅ Event created  Yay! ...wait for approval</h2><p style="text-align:center;"><a href="/events/new">Create Another</a> | <a href="/events">Back to Events</a></p>`);
   } catch (err) {
-    res.status(500).send('Failed to create event');
+    console.error(err);
+    res.status(500).send('⚠️ Failed to create event.');
   }
 });
 
