@@ -5,6 +5,9 @@ const { isVendor } = require('../middleware/authMiddleware');
 const path = require('path');
 const fs = require('fs');
 
+
+
+
 // fr u vendor ;)
 router.get('/new', isVendor, (req, res) => {
   const html = fs.readFileSync(path.join(__dirname, '../views/create_event.html'), 'utf8');
@@ -34,8 +37,10 @@ router.post('/new', isVendor, async (req, res) => {
       totalSeats: parseInt(totalSeats),
       availableSeats: parseInt(totalSeats),
       vendor: req.session.userId,
-      status: 'pending' // consent is necessar (ig)
+      status: 'pending' // consent 
     });
+
+
 
     await newEvent.save();
     res.send(`<h2 style="font-family:DM Serif Display;color:#4a90e2;text-align:center;">✅ Event created  Yay! ...wait for approval</h2><p style="text-align:center;"><a href="/events/new">Create Another</a> | <a href="/events">Back to Events</a></p>`);

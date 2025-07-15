@@ -11,10 +11,9 @@ const generatePDF = require('../utils/pdfGenerator');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 
-// This serves the booking form HTML page
-router.get('/form', isAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/booking_form.html'));
-});
+
+
+
 
 // booking form autoput feauture
 router.get('/:id/book', isAuthenticated, async (req, res) => {
@@ -32,7 +31,7 @@ router.get('/:id/book', isAuthenticated, async (req, res) => {
 });
 
 // confirm booking nd generate ticket
-router.post('/confirm', isAuthenticated, async (req, res) => {
+router.post('/bookings/confirm', isAuthenticated, async (req, res) => {
   try {
     const { eventId, quantity, price, source, destination } = req.body;
     const event = await Event.findById(eventId);
