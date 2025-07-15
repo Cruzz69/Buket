@@ -93,13 +93,13 @@
   </style>
 </head>
 <body>
-  <h1>Explore Events</h1>
+  <h1>Explore Events </h1>
   <div class="nav-buttons">
     <button onclick="showSection('movies', '/images/movie.jpg')">Movies</button>
     <button onclick="showSection('trains', '/images/flight.jpg')">Trains</button>
   </div>
 
-  <div class="events-grid">
+  <div class="events-grid" >
     <div id="movies" class="event-section active">
       <div class="event-card">
         <h3>Dune: Part II</h3>
@@ -203,8 +203,8 @@
         source,
         destination
       }).toString();
-       window.location.href = `/bookings/form?${query}`;
-
+      window.location.href = `/${eventId}/book`;
+;
     }
   </script>
 </body>
